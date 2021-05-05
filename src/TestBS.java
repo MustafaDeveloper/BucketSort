@@ -6,29 +6,29 @@ public class TestBS {
     // Testing of Bucket Sort (BS) algorithm
     public static void main(String[] args) {
 
-        ArrayList<Integer> firstList = new ArrayList();
-        firstList.add(8);
-        firstList.add(-2);
-        firstList.add(6);
-        firstList.add(3);
-        firstList.add(-5);
-        firstList.add(4);
-        firstList.add(-10);
-        firstList.add(30);
-        firstList.add(-11);
-        firstList.add(22);
+        ArrayList<Integer> list = new ArrayList();
+        list.add(8);
+        list.add(-2);
+        list.add(6);
+        list.add(3);
+        list.add(-5);
+        list.add(4);
+        list.add(-10);
+        list.add(30);
+        list.add(-11);
+        list.add(22);
         System.out.println("********* Sendet List ********");
 
-        System.out.println( firstList);
+        System.out.println( list);
 
         int BUCKET_SORT = 5;
-        BucketSort bs = new BucketSort(firstList,BUCKET_SORT);
+        BucketSort bs = new BucketSort(list,BUCKET_SORT);
         bs.bucketSortList();
         //bs.printBS();
         System.out.println("********* Bucket List *********");
-        System.out.println(bs.bucketList);
+        System.out.println(bs.getBucketList());
         System.out.println("******* Sorted Bucket List ******");
-        System.out.println(bs.sortedListLast(bs.bucketList));
+        System.out.println(bs.sortedListLast(bs.getBucketList()));
 
 
     }

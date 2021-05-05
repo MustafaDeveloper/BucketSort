@@ -3,10 +3,9 @@ import java.util.ArrayList;
 
 public class BucketSort {
 
-    public ArrayList<ArrayList<Integer>> bucketList = new ArrayList<>();
-    public ArrayList<Integer> bucketListLast = new ArrayList<>();
-    public ArrayList<Integer> list;
-    public int BUCKET_SORT;
+    private ArrayList<ArrayList<Integer>> bucketList = new ArrayList<>();
+    private ArrayList<Integer> list;
+    private int BUCKET_SORT;
 
     int min;
     int max;
@@ -77,5 +76,9 @@ public class BucketSort {
         for (int i = 0; i < BUCKET_SORT; i++) {
             System.out.println("Bucket-" + (i + 1) + " " + bucketList.get(i));
         }
+    }
+
+    public ArrayList<ArrayList<Integer>> getBucketList() {
+        return bucketList;
     }
 }
