@@ -21,7 +21,7 @@ public class TestBS {
 
         System.out.println( list);
 
-        int BUCKET_SORT = 5;
+        int BUCKET_SORT = 4;
         BucketSort bs = new BucketSort(list,BUCKET_SORT);
         bs.bucketSortList();
         //bs.printBS();
