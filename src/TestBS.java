@@ -6,29 +6,30 @@ public class TestBS {
     // Testing of Bucket Sort (BS) algorithm
     public static void main(String[] args) {
 
-        ArrayList<Integer> list = new ArrayList();
-        list.add(8);
-        list.add(-2);
-        list.add(6);
-        list.add(3);
-        list.add(-5);
-        list.add(4);
-        list.add(-10);
-        list.add(30);
-        list.add(-11);
-        list.add(22);
-        list.add(3000);
-        list.add(-110);
-        list.add(220);
+        ArrayList<Integer> unSortedList = new ArrayList();
 
-        //    System.out.println("********* Sendet List ********");
-        int BUCKET_SORT =3;
+        unSortedList.add(8);
+        unSortedList.add(-2);
+        unSortedList.add(6);
+        unSortedList.add(3);
+        unSortedList.add(-5);
+        unSortedList.add(4);
+        unSortedList.add(-10);
+        unSortedList.add(30);
+        unSortedList.add(-11);
+        unSortedList.add(22);
+        unSortedList.add(3000);
+        unSortedList.add(-110);
+        unSortedList.add(220);
+       // unSortedList.add(8);
+
+        int BUCKET_SORT =5;
         BucketSort bs = new BucketSort();
         bs.setBUCKET_SORT(BUCKET_SORT);
-        bs.setList(list);
-
+        bs.setList(unSortedList);
+        System.out.println("Unsorted list:\t" + bs.getList());
         bs.bucketSortList(bs);
-       // System.out.println(bs.getBucketList());
-        System.out.println(bs.getList());
+       System.out.println("Bucket list  :\t "+bs.getBucketList());
+        System.out.println("Sorted list  :\t"+bs.getList());
     }
 }
