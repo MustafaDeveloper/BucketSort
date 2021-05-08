@@ -6,79 +6,166 @@ public class BucketSort {
     private ArrayList<ArrayList<Integer>> bucketList = new ArrayList<>();
     private ArrayList<Integer> list;
     private int BUCKET_SORT;
+    private ArrayList<BucketSort> arrBucketSort;
 
-    int min;
-    int max;
-    int offset;
+//    public void bucketSort() {
+//        ArrayList<Integer> arrBS=new ArrayList<>();
+//        bucketSortList(this);
+//        for (ArrayList<Integer> a: bucketList  ) {
+//            if (a.size()>1){
+//                arrBS
+//            }else{
+//
+//            }
+//        }
+//
+//    }
 
-    public BucketSort(ArrayList<Integer> list, int BUCKET_SORT) {
-        this.list = list;
-        this.BUCKET_SORT = BUCKET_SORT;
-        min = getMinMax("min");
-        max = getMinMax("max");
+    public ArrayList<ArrayList<Integer>> bucketSortList(BucketSort bs) {
+
+        bucketList = sortOfList(this.list);
+        // newArr = bucketList;
+        boolean bucketSorted = true;
+        System.out.println("bucketList 01 = " + bucketList);
+
+        while (bucketSorted) {
+            ArrayList<ArrayList<Integer>> newArr = new ArrayList<>();
+            System.out.println("WHILE bucketList = " + bucketList);
+            //System.out.println("WHILE newArr = " + newArr);
+
+            for (int i = 0; i < bucketList.size(); i++) {
+                int newIndex = 0;
+                System.out.println("************************");
+                System.out.println("i = " + i);
+                System.out.println("FOR bucketList = " + bucketList);
+                System.out.println("FOR newArr = " + newArr);
+
+                if (bucketList.get(i).size() > 1) {
+                    ArrayList<ArrayList<Integer>> temp = new ArrayList<>();
+                    int index = bucketList.indexOf(bucketList.get(i));
+                    temp = sortOfList(bucketList.get(i));
+                    System.out.println("temp 02 = " + temp);
+                    if (i != 0) newIndex++;
+                        for (int j = 0; j < bucketList.size(); j++) {
+                            if (j == i) {
+                                for (int k = 0; k < 3; k++) {
+                                    newArr.add(temp.get(k));
+                                }
+
+                            }
+                        }
+
+                    System.out.println("newArr 05 : " + newArr);
+                } else {
+                    //   bucketList = newArr;
+                    newArr.add(bucketList.get(i));
+                    System.out.println("  newArr   son  ::: " + newArr);
+                    System.out.println("bucketList son  ::: " + bucketList);
+                }
+
+
+            }
+            bucketList = newArr;
+
+            for (int m = 0; m < bucketList.size(); m++) {
+                if (bucketList.get(m).size() > 1) {
+                    bucketSorted = true;
+                    break;
+                } else {
+                    bucketSorted = false;
+                }
+            }
+
+
+        }
+
+        System.out.println("SON bucketList = " + bucketList);
+        list.clear();
+        for (ArrayList<Integer> a:bucketList ) {
+            if(a.size()>0) list.add(a.get(0));
+        }
+        System.out.print("\n");
+        return bucketList;
     }
 
-    public void bucketSortList() {
-        if (min >= 0) offset = 0;
-        else offset = (min * -1);
-
+    public ArrayList<ArrayList<Integer>> sortOfList(ArrayList<Integer> l) {
+        ArrayList<ArrayList<Integer>> newList = new ArrayList<>();
+        int min = getMin(l);
+        int max = getMax(l);
+        int offset = 0;
+//        System.out.println("min = " + min);
+//        System.out.println("max = " + max);
+//        System.out.println("offset = " + offset);
+        if (min < 0) offset = (min * -1);
         int index = 0;
 
         for (int i = 0; i < BUCKET_SORT; i++) {
-            bucketList.add(i, new ArrayList<Integer>());
+            newList.add(i, new ArrayList<Integer>());
         }
 
-        for (int i = 0; i < list.size(); i++) {
-            int el = list.get(i);
+        for (int i = 0; i < l.size(); i++) {
+            int el = l.get(i);
             index = (BUCKET_SORT - 1) * (el + offset) / (max + offset);
-            bucketList.get(index).add(el);
+            newList.get(index).add(el);
         }
+        return newList;
     }
 
-    public int getMinMax(String min_max) {
-        min = list.get(0);
-        max = list.get(0);
 
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) < min) min = list.get(i);
-            else if (list.get(i) > max) max = list.get(i);
+    public int getMin(ArrayList<Integer> l) {
+        int min = l.get(0);
+        for (int i = 0; i < l.size(); i++) {
+            if (l.get(i) < min) min = l.get(i);
         }
+        return min;
 
-        if (min_max.equals("min")) return min;
-        else if (min_max.equals("max")) return max;
-        else return -1;
     }
 
-    public ArrayList<Integer> sortedList(ArrayList<Integer> l) {
-        boolean sorted = false;
-        int temp;
-        while (!sorted) {
-            sorted = true;
-            for (int i = 0; i < l.size() - 1; i++) {
-                if (l.get(i) > l.get(i + 1)) {
-                    temp = l.get(i);
-                    l.set(i, l.get(i + 1));
-                    l.set(i + 1, temp);
-                    sorted = false;
-                }
-            }
+    public int getMax(ArrayList<Integer> l) {
+        int max = l.get(0);
+        for (int i = 0; i < l.size(); i++) {
+            if (l.get(i) > max) max = l.get(i);
         }
-        return l;
+        return max;
     }
 
-    public ArrayList<ArrayList<Integer>> sortedListLast(ArrayList<ArrayList<Integer>> lol) {
-        lol.forEach(i -> sortedList(i));
-        return lol;
+
+    public ArrayList<Integer> getList() {
+        return list;
     }
 
-    public void printBS() {
-        System.out.println("bs list: " + bucketList);
-        for (int i = 0; i < BUCKET_SORT; i++) {
-            System.out.println("Bucket-" + (i + 1) + " " + bucketList.get(i));
-        }
+    public void setList(ArrayList<Integer> list) {
+        this.list = list;
+    }
+
+    public int getBUCKET_SORT() {
+        return BUCKET_SORT;
+    }
+
+    public void setBUCKET_SORT(int BUCKET_SORT) {
+        this.BUCKET_SORT = BUCKET_SORT;
     }
 
     public ArrayList<ArrayList<Integer>> getBucketList() {
         return bucketList;
     }
+// Sorted Algorithm
+//    public ArrayList<Integer> sortedList(ArrayList<Integer> l) {
+//        boolean sorted = false;
+//        int temp;
+//        while (!sorted) {
+//            sorted = true;
+//            for (int i = 0; i < l.size() - 1; i++) {
+//                if (l.get(i) > l.get(i + 1)) {
+//                    temp = l.get(i);
+//                    l.set(i, l.get(i + 1));
+//                    l.set(i + 1, temp);
+//                    sorted = false;
+//                }
+//            }
+//        }
+//        return l;
+//    }
+
+
 }

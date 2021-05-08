@@ -17,19 +17,18 @@ public class TestBS {
         list.add(30);
         list.add(-11);
         list.add(22);
-        System.out.println("********* Sendet List ********");
+        list.add(3000);
+        list.add(-110);
+        list.add(220);
 
-        System.out.println( list);
+        //    System.out.println("********* Sendet List ********");
+        int BUCKET_SORT =3;
+        BucketSort bs = new BucketSort();
+        bs.setBUCKET_SORT(BUCKET_SORT);
+        bs.setList(list);
 
-        int BUCKET_SORT = 4;
-        BucketSort bs = new BucketSort(list,BUCKET_SORT);
-        bs.bucketSortList();
-        //bs.printBS();
-        System.out.println("********* Bucket List *********");
-        System.out.println(bs.getBucketList());
-        System.out.println("******* Sorted Bucket List ******");
-        System.out.println(bs.sortedListLast(bs.getBucketList()));
-
-
+        bs.bucketSortList(bs);
+       // System.out.println(bs.getBucketList());
+        System.out.println(bs.getList());
     }
 }
